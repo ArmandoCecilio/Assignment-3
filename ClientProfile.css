@@ -1,0 +1,59 @@
+/* ClientProfile.css */
+
+body{
+    background-color: #006699;
+  }
+  
+  h1 {
+    color: #010204;
+    text-align: center;
+  }
+  
+  form{
+    background-color: #f0f8ff;
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+    color: #030609;
+  }
+  
+  input[type="text"],
+  select {
+    width: 50%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px #ccc;
+  }
+  
+  input[type="submit"] {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #003366;
+  }
+
+  select option:first-child {
+    color: #ccc;
+  }
+
+  select:focus,
+  input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px #0066cc;
+  }
+  
