@@ -1,0 +1,33 @@
+/*TEMP Styling Sheet for Quotes History*/
+
+/*==============Body==================*/
+body{
+    align-items: center;
+    padding:auto;
+    height: 1000vh;
+}
+/*===================Main=============*/
+.main{
+    padding:auto;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    width:fit-content;
+}
+/*===========End Main=================*/
+
+/*===========Table==============*/
+table{
+    border-radius: 2px;
+    border-color: #079f07;
+}
+th{
+    color: #0059ff;
+    padding-right: 20%;
+    width: 100px;
+    text-align: left;
+}
+tr{
+    height:30px;
+}
+/*==============End Table========*/
