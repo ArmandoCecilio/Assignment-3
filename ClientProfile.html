@@ -1,31 +1,42 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-	<title> Client's Profile Management </title>
-    <link rel = "stylesheet" href = "ClientProfile.css">
+	<title>Oleum - Fuel Quote Form</title>
+	<link rel="stylesheet" type="text/css" href="ClientProfile.css">
+    <link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
 </head>
 <body>
-          <h1> Client's Profile Management </h1>
-<form>
-    <!-- Full Name Section -->
+
+	<div class="navbar">
+        <a href="quotehistory.html">Quote History</a> 
+        <a class="active" href="ClientProfile.html">Client Profile</a> 
+        <a href="fuel_quote_form.html">Fuel Quote Form</a> 
+        <a href="index.html">Log Out</a>
+    </div>
+
+    <div class="box1">
+      <!--Form-->
+      <form action = "" method = "post" style="margin-top:50px">
+        <!-- Full Name Section -->
 	<label for = "fullname"> Full Name: </label>
-	<input type = "text" id = "fullname" name= "fullname" maxlength = "50" required> <br> <br>
+	<input type = "text" id = "fullname" name= "fullname" maxlength = "50" readonly> <br> <br>
 
     <!-- Address 1 Section (required) -->
 	<label for = "address1"> Address 1: </label>
-	<input type = "text" id = "address1" name = "address1" maxlength = "100" required> <br> <br>
+	<input type = "text" id = "address1" name = "address1" maxlength = "100" readonly> <br> <br>
 
     <!-- Address 2 Section (optional )-->
 	<label for = "address2">Address 2: </label>
-	<input type = "text" id = "address2" name = "address2" maxlength = "100"> <br> <br>
+	<input type = "text" id = "address2" name = "address2" maxlength = "100" readonly> <br> <br>
 
     <!-- City Section -->
 	<label for = "city"> City: </label>
-	<input type = "text" id = "city" name = "city" maxlength = "100" required> <br> <br>
+	<input type = "text" id = "city" name = "city" maxlength = "100" readonly> <br> <br>
 
     <!-- State Section -->
 	<label for = "state"> State: </label>
-	<select id = "state" name = "state" required>
+	<select id = "state" name = "state" readonly>
         
     <!-- These will be for all the 50 states in alphabet order. -->
        <option value = "">Select state </option>
@@ -84,12 +95,51 @@
 
        <!-- Zipcode Section -->
 	<label for = "zipcode"> Zipcode: </label>
-	<input type = "text" id = "zipcode" name = "zipcode" minlength = "5" maxlength = "9" required> <br> <br>
+	<input type = "text" id = "zipcode" name = "zipcode" minlength = "5" maxlength = "9" readonly> <br> <br>
 
     <!-- Save Section -->
-	 <input type="submit" value = "Save"> 
-   
-
-</form>
+	 <input type="submit" value = "Save">
+      </form>
+      </div>
+    </div>
+  
 </body>
 </html>
+<style>
+* {box-sizing: border-box}
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  width: 25%; /* Four links of equal widths */
+  text-align: center;
+}
+
+.navbar a:hover {
+  background-color: #000;
+}
+
+.navbar a.active {
+  background-color: #2680eb;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+</style>
