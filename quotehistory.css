@@ -2,32 +2,45 @@
 
 /*==============Body==================*/
 body{
+    background-color: #006699;
     align-items: center;
-    padding:auto;
-    height: 1000vh;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    color: #010204;
+    text-align: center;
 }
 /*===================Main=============*/
 .main{
-    padding:auto;
+    padding:20px auto;
     align-items: center;
+    text-align: center;
     display: flex;
     flex-direction: row;
-    width:fit-content;
+    background-color: #f0f8ff;
 }
 /*===========End Main=================*/
 
 /*===========Table==============*/
 table{
     border-radius: 2px;
-    border-color: #079f07;
+    border: 2px solid #079f07;
+    background-color: #f0f8ff;
 }
 th{
-    color: #0059ff;
-    padding-right: 20%;
-    width: 100px;
-    text-align: left;
+    background-color: darkgray;
+    width: 125px;
+}
+td{
+    padding-right: 5%;
+    padding-left: 10px;
 }
 tr{
-    height:30px;
+    border-radius: 0;
+    border: 5px solid #010204;
+}
+footer{
+    margin-top: 25px;
 }
 /*==============End Table========*/
