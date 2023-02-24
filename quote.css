@@ -1,0 +1,48 @@
+/*TEMP Styling Sheet for Quotes*/
+
+/*==============Body==================*/
+body{
+    background-color: #006699;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    color: #010204;
+    text-align: center;
+}
+/*===================Main=============*/
+.main{
+    padding:20px auto;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    background-color: #f0f8ff;
+}
+/*===========End Main=================*/
+
+/*===========Table==============*/
+table{
+    border-radius: 2px;
+    border: 2px solid #079f07;
+    background-color: #f0f8ff;
+}
+th{
+    background-color: darkgray;
+    width: 125px;
+}
+td{
+    padding-right: 5%;
+    padding-left: 10px;
+}
+tr{
+    border-radius: 0;
+    border: 5px solid #010204;
+    padding: 5%;
+}
+footer{
+    margin-top: 25px;
+}
+/*==============End Table========*/
+
