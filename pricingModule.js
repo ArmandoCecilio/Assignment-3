@@ -4,7 +4,7 @@ const path = require('path');
 
 // The pricing module for fuel quote form
 // Only creating a class and will implement this in last assignment.
-class PricingModule {
+class pricingModule {
 
 }
 
