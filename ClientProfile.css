@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #2680eb;
   }
   
   .container {
@@ -11,7 +12,7 @@ body {
   .box1 {
     flex: 1;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #2680eb;
   }
   .box1 {
     display: flex;
@@ -26,7 +27,7 @@ body {
   .box2 {
     flex: 1;
     height: 100vh;
-    background-color: #006699;
+    background-color: #2680eb;
   }
   .box2 {
     display: flex;
@@ -67,7 +68,7 @@ body {
   }
   
   .links a:hover {
-    color: #006699;
+    color: #2680eb;
   }
   
   @media only screen and (max-width: 768px) {
@@ -153,13 +154,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #2680eb;
 }
-/*test 1*/
 
 /*
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 
 ::-webkit-scrollbar-track {
   background-color: #2680eb;

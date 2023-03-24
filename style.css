@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #2680eb;
   }
   
   .container {
@@ -26,7 +27,7 @@ body {
   .box2 {
     flex: 1;
     height: 100vh;
-    background-color: #006699;
+    background-color: #2680eb;
   }
   .box2 {
     display: flex;
@@ -86,7 +87,7 @@ body {
   }
   
   .button1 {
-    background-color: #006699;
+    background-color: #2680eb;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -96,7 +97,7 @@ body {
   }
   
   button[type="submit"]:hover {
-    background-color: #005580;
+    background-color: #2680eb;
   }
   
   .links {
@@ -115,7 +116,7 @@ body {
   }
   
   .links a:hover {
-    color: #006699;
+    color: #2680eb;
   }
   
   @media only screen and (max-width: 768px) {
