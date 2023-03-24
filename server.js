@@ -6,7 +6,7 @@ const querystring = require('querystring');
 const server = http.createServer((req, res) => {
   const pageUrl = url.parse(req.url, true);
   const pathname = pageUrl.pathname;
-  console.log(pathname);
+
   //Login Page
   if (pathname === '/') {
     fs.readFile('index.html', (err, data) => {
@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
     });
 
     } else if (pathname === '/styles.css') {
-        fs.readFile('style.css', (err, data) => {
+        fs.readFile('styles.css', (err, data) => {
         if (err) {
             res.writeHead(404, {'Content-Type': 'text/html'});
             return res.end('404 Not Found');
