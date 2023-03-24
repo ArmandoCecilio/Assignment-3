@@ -1,0 +1,19 @@
+//------Landing Page of the Platform----------
+extends layout
+block content
+  h1 Welcome to #{companyname}
+  .container 
+    .box1 
+      img(src="images/oil.png", alt="oil-picture")
+    .box2 
+      .login-box 
+        form(action="/")
+          h1="Login"
+          .form-group 
+            label(for="username") username
+            input(type="text", name="username", id="username", placeholder="Enter Username", required)
+          .form-group 
+            label(for="password") password
+            input(type="password", name="password", id="password", placeholder="Enter Password", required)
+          a(href="register/") Create an Account
+  

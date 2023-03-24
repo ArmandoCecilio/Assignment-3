@@ -1,0 +1,31 @@
+//------List of All the past Fuel Quote Requested----------
+extends layout
+block navbar 
+    .navbar
+        a(href="/quotehistory", class="active") Quote History
+        a(href="/profile") Client Profile 
+        a(href="/getquote") Fuel Quote Form 
+        a(href="/") Log Out  
+block content
+  .container1
+    ul
+        .responsive-table 
+            li
+                .table-header
+                        .col.col-1 Gallons Requested 
+                        .col.col-2 Delivery Address
+                        .col.col-3 Delivery Date
+                        .col.col-4 Price Per Gallon 
+                        .col.col-5 Total Cost 
+                for quote in userquotes 
+                    li.table-row
+                        .col.col-1 
+                            data-label Gallons Requested #{quote.gallons}
+                        .col.col-2 
+                            data-label Delivery Adress #{quote.address}
+                        .col.col-3 
+                            data-label Delivery Date #{quote.date}
+                        .col.col-4 
+                            data-label Price Per Gallon #{quote.price}
+                        .col.col-5 
+                            data-label Total Amount Due #{quote.totalcost}
