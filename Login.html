@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Oleum - Create Account</title>
-  <link rel="stylesheet" type="text/css" href="Create_Account.css">
-  <link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
+	<title>Oleum - Login</title>
+	<link rel="stylesheet" type="text/css" href="Login.css">
+    <link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
 </head>
-
 <body>
 
-  <div class="container">
+	<div class="container">
     <div class="box1">
-      <img src="oil.png">
+        <img src="oil.png">
     </div>
     <div class="box2">
       <div class="login-box">
-        <form action="Create_Account.php" method="post">
-          <h1>Create Account</h1>
+        <form action="login.php" method="post">
+          <h1 style="text-align:center">Login</h1>
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" placeholder="Enter Username" required>
@@ -25,16 +23,14 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter Password" required>
           </div>
-          <button type="submit" class="button1" name="submit">Create</button>
+          <button type="submit" class="button1" name="submit">Login</button>
           <div class="links">
-            <!--<a href="#">Forgot Password?</a>-->
-            <a href="Login.html">Already Have an Account?</span></a>
+            <a href="Create_Account.html">Create an account</span></a>
           </div>
         </form>
       </div>
     </div>
-  </div>
-
+	</div>
+  
 </body>
-
 </html>

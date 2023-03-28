@@ -1,3 +1,6 @@
+
+
+
 body {
     margin: 0;
     padding: 0;
@@ -27,7 +30,7 @@ body {
   .box2 {
     flex: 1;
     height: 100vh;
-    background-color: #2680eb;
+    background-color: #006699;
   }
   .box2 {
     display: flex;
@@ -68,7 +71,7 @@ body {
   }
   
   .links a:hover {
-    color: #2680eb;
+    color: #006699;
   }
   
   @media only screen and (max-width: 768px) {
@@ -171,4 +174,83 @@ input[type="submit"]:hover {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #000000;
 } */
-
+/*here*/
+body {
+    font-family: 'lato', sans-serif;
+    background-color: #2680eb;
+}
+.container1 {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+h2 small {
+    font-size: 0.5em;
+}
+.responsive-table li {
+    border-radius: 25px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.responsive-table .table-header {
+    background-color: #95a5a6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-width:2px;
+    border:black;
+    border-style:solid;
+}
+.responsive-table .table-row {
+    background-color: #fff;
+    box-shadow: 0px 0px 9px 0px rgba(1, 1, 255, 0.5);
+    border-width:2px;
+    border:black;
+    border-style:solid;
+}
+.responsive-table .col-1 {
+    flex-basis: 20%;
+}
+.responsive-table .col-2 {
+    flex-basis: 20%;
+}
+.responsive-table .col-3 {
+    flex-basis: 20%;
+}
+.responsive-table .col-4 {
+    flex-basis: 20%;
+}
+.responsive-table .col-5 {
+    flex-basis: 20%;
+}
+@media all and (max-width: 767px) {
+    .responsive-table .table-header {
+        display: none;
+   }
+    .responsive-table li {
+        display: block;
+   }
+    .responsive-table .col {
+        flex-basis: 100%;
+   }
+    .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+   }
+    .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+   }
+}
