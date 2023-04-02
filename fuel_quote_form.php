@@ -1,108 +1,68 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Oleum - Fuel Quote Form</title>
-        <link rel="stylesheet" type="text/css" href="fuel_quote_form.css">
-        <link rel="shortcut icon" type="image/x-icon" href="logo.ico">
-    </head>
-    <body>
-        <div class = "navbar">
-            <a href = "quotehistory.html">Quote History</a>
-            <a href = "ClientProfile.html">Client Profile</a>
-            <a class = "active" href = "fuel_quote_form.html">Fuel Quote Form</a>
-            <a href = "Login.html">Log Out</a>
-        </div>
-        <div class = "box1">
-            <!--Form-->
-            <form action = "" method = "post">
-            <!--Gallons Requested-->
-            <label for = "gallonsRequested">Gallons Requested:</label>
-            <input type = "number" id = "gallonsRequested" name = "gallonsRequested" required><br>
+<?php
 
-            <!--Delivery Address-->
-            <label for = "deliveryAddress">Delivery Address:</label>
-            <input type = "text" id = "deliveryAddress" name = "deliveryAddress" required><br>
+class FuelQuote {
+  private $gallonsRequested;
+  private $deliveryAddress;
+  private $deliveryDate;
+  private $suggestedPricePerGallon;
 
-            <!--Delivery Date-->
-            <label for = "deliveryDate">Delivery Date:</label>
-            <input type = "date" id = "deliveryDate" name = "deliveryDate" required><br>
-
-            <!--Suggested Price / Gallon-->
-            <label for = "suggestedPrice/Gallon">Suggested Price / Gallon:</label>
-            <?php
-                $suggestedPricePerGallon = 10;
-                if(isset($_POST['gallonsRequested'])) {
-                    $gallonsRequested = $_POST['gallonsRequested'];
-                    $suggestedPricePerGallon = $suggestedPricePerGallon;
-                    if($gallonsRequested > 1000) {
-                        $suggestedPricePerGallon;
-                    }
-                    else {
-                        $suggestedPricePerGallon;
-                    }
-                    echo "<input type='number' id='suggestedPrice/Gallon' name='suggestedPrice/Gallon' value='$suggestedPricePerGallon' readonly><br>";
-                }
-                else {
-                    echo "<input type='number' id='suggestedPrice/Gallon' name='suggestedPrice/Gallon' value='$suggestedPricePerGallon' readonly><br>";
-                }
-            ?>
-            <label for = "totalAmountDue">Total Amount Due:</label>
-            <?php
-                if(isset($_POST['gallonsRequested'])) {
-                    $gallonsRequested = $_POST['gallonsRequested'];
-                    $totalAmountDue = $gallonsRequested * $suggestedPricePerGallon;
-                    echo "<input type='number' id='totalAmountDue' name='totalAmountDue' value='$totalAmountDue' readonly><br>";
-                }
-                else {
-                    echo "<input type='number' id='totalAmountDue' name='totalAmountDue' readonly><br>";
-                }
-            ?>
-            <input type = "submit" value = "Submit">
-            </form>
-        </div>
-    </body>
-</html>
-
-<style>
-  * {
-    box-sizing: border-box
+  public function __construct($gallonsRequested, $deliveryAddress, $deliveryDate, $suggestedPricePerGallon) {
+    $this->gallonsRequested = $gallonsRequested;
+    $this->deliveryAddress = $deliveryAddress;
+    $this->deliveryDate = $deliveryDate;
+    $this->suggestedPricePerGallon = $suggestedPricePerGallon;
   }
 
-  body {
-    font-family: Arial, Helvetica, sans-serif;
+  public function calculateTotalAmountDue() {
+    return $this->gallonsRequested * $this->suggestedPricePerGallon;
   }
 
-  .navbar {
-    width: 100%;
-    background-color: #555;
-    overflow: auto;
+  public function setGallonsRequested($gallonsRequested) {
+    $this->gallonsRequested = $gallonsRequested;
   }
 
-  .navbar a {
-    float: left;
-    padding: 12px;
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-    width: 25%;
-    text-align: center;
+  public function setDeliveryAddress($deliveryAddress) {
+    $this->deliveryAddress = $deliveryAddress;
   }
 
-  .navbar a:hover {
-    background-color: #000;
+  public function setDeliveryDate($deliveryDate) {
+    $this->deliveryDate = $deliveryDate;
   }
 
-  .navbar a.active {
-    background-color: #2680eb;
+  public function setSuggestedPricePerGallon($suggestedPricePerGallon) {
+    $this->suggestedPricePerGallon = $suggestedPricePerGallon;
   }
 
-  @media screen and (max-width: 500px) {
-    .navbar a {
-      float: none;
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
+  public function getGallonsRequested() {
+    return $this->gallonsRequested;
   }
-</style>
+
+  public function getDeliveryAddress() {
+    return $this->deliveryAddress;
+  }
+
+  public function getDeliveryDate() {
+    return $this->deliveryDate;
+  }
+
+  public function getSuggestedPricePerGallon() {
+    return $this->suggestedPricePerGallon;
+  }
+}
+
+if (!isset($_SERVER['REQUEST_METHOD'])) {
+  $_SERVER['REQUEST_METHOD'] = 'POST';
+}
+// Get form inputs
+$gallons_requested = isset($_POST['gallonsRequested']) ? $_POST['gallonsRequested'] : null;
+$deliveryAddress = isset($_POST['deliveryAddress']) ? $_POST['deliveryAddress'] : null;
+$deliveryDate = isset($_POST['deliveryDate']) ? $_POST['deliveryDate'] : null;
+$suggestedPricePerGallon = 1.50; // This value can be changed as needed
+
+// Create new FuelQuote object
+$fuelQuote = new FuelQuote($gallons_requested, $deliveryAddress, $deliveryDate, $suggestedPricePerGallon);
+
+// Calculate total amount due
+$totalAmountDue = $fuelQuote->calculateTotalAmountDue();
+
+?>

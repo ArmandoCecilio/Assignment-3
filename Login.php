@@ -1,13 +1,22 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+class LoginModule {
+    private $users;
 
-    if ($username === 'temp1' && $password === 'temp2') {
-        header('Location: fuel_quote_form.php');
-        exit;
-    } else {
-        echo 'Incorrect username or password. Please try again.';
+    public function __construct() {
+        // Hard-coded list of user credentials
+        $this->users = array(
+            'username' => 'password',
+            'john' => 'doe',
+        );
+    }
+
+    public function validate($username, $password) {
+        if (isset($this->users[$username]) && $this->users[$username] === $password) {
+            header('Location: fuel_quote_form.php');
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 ?>
