@@ -1,23 +1,31 @@
 <?php
-
-session_start();
-
-class ClientProfile {
-
-    public static function validateProfileFields($fullName, $address1, $city, $state, $zip) {
-        if (!isset($fullName) || empty(trim($fullName)) ||
-            !isset($address1) || empty(trim($address1)) ||
-            !isset($city) || empty(trim($city)) ||
-            !isset($state) || empty(trim($state)) ||
-            !isset($zip) || empty(trim($zip))) {
-            return false;
-        } else {
-            $_SESSION["profile_completed"] = true;
-            return true;
-        }
-    }
-
-    public static function isProfileCompleted() {
-        return isset($_SESSION["profile_completed"]) && $_SESSION["profile_completed"];
-    }
+// Connect to MySQL server
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "oleum";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
+
+// Get form data
+$fullname = $_POST["fullname"];
+$Address1 = $_POST["Address1"];
+$Address2 = $_POST["Address2"];
+$city = $_POST["City"];
+$state = $_POST["State"];
+$zip = $_POST["Zipcode"];
+
+// Insert data into the login table
+$sql = "INSERT INTO ClientProfile (fullname, address1, address2, city, state, zip) VALUES ('$fullname', '$Address1','$Address2', '$city', '$state', '$zip')";
+if ($conn->query($sql) === TRUE) {
+  // Redirect to profile management page
+  header("Location: ClientProfile.html");
+  exit();
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close database connection
+$conn->close();
