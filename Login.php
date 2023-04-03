@@ -1,28 +1,30 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "oleum";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'oleum';
+
+$conn = mysqli_connect($host, $username, $password, $database);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-$username = $_POST["username"];
-$password = $_POST["password"];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-$sql = "SELECT * FROM login WHERE username='$username'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-  echo "Username already exists.";
-} else {
-  $sql = "INSERT INTO login (username, password) VALUES ('$username', '$password')";
-  if ($conn->query($sql) === TRUE) {
-    header("Location: ClientProfile.html");
-    exit();
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+    $query = "SELECT * FROM login WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        header('Location: fuel_quote_form.html');
+        exit;
+    } else {
+        echo 'Incorrect username or password. Please try again.';
+    }
 }
 
-$conn->close();
+mysqli_close($conn);
+
