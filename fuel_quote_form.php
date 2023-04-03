@@ -1,68 +1,31 @@
 <?php
 
-class FuelQuote {
-  private $gallonsRequested;
-  private $deliveryAddress;
-  private $deliveryDate;
-  private $suggestedPricePerGallon;
-
-  public function __construct($gallonsRequested, $deliveryAddress, $deliveryDate, $suggestedPricePerGallon) {
-    $this->gallonsRequested = $gallonsRequested;
-    $this->deliveryAddress = $deliveryAddress;
-    $this->deliveryDate = $deliveryDate;
-    $this->suggestedPricePerGallon = $suggestedPricePerGallon;
-  }
-
-  public function calculateTotalAmountDue() {
-    return $this->gallonsRequested * $this->suggestedPricePerGallon;
-  }
-
-  public function setGallonsRequested($gallonsRequested) {
-    $this->gallonsRequested = $gallonsRequested;
-  }
-
-  public function setDeliveryAddress($deliveryAddress) {
-    $this->deliveryAddress = $deliveryAddress;
-  }
-
-  public function setDeliveryDate($deliveryDate) {
-    $this->deliveryDate = $deliveryDate;
-  }
-
-  public function setSuggestedPricePerGallon($suggestedPricePerGallon) {
-    $this->suggestedPricePerGallon = $suggestedPricePerGallon;
-  }
-
-  public function getGallonsRequested() {
-    return $this->gallonsRequested;
-  }
-
-  public function getDeliveryAddress() {
-    return $this->deliveryAddress;
-  }
-
-  public function getDeliveryDate() {
-    return $this->deliveryDate;
-  }
-
-  public function getSuggestedPricePerGallon() {
-    return $this->suggestedPricePerGallon;
-  }
+// Connect to MySQL server
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "oleum";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
 
-if (!isset($_SERVER['REQUEST_METHOD'])) {
-  $_SERVER['REQUEST_METHOD'] = 'POST';
+// Get form data
+$gallons_requested = $_POST["gallonsRequested"];
+$delivery_address = $_POST["deliveryAddress"];
+$delivery_date = $_POST["deliveryDate"];
+$suggested_price = 1.70;
+$total_amount_price = $_POST["totalAmountDue"];
+
+// Insert data into the fuelquote table
+$sql = "INSERT INTO FuelQuoteForm (gallonsRequested, deliveryAddress, deliveryDate, 1.70, totalAmountDue) VALUES ('$gallons_requested', '$delivery_address','$delivery_date', '$suggested_price', '$total_amount_due')";
+if ($conn->query($sql) === TRUE) {
+  // Redirect to profile management page
+  header("Location: fuel_quote_form.html");
+  exit();
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
 }
-// Get form inputs
-$gallons_requested = isset($_POST['gallonsRequested']) ? $_POST['gallonsRequested'] : null;
-$deliveryAddress = isset($_POST['deliveryAddress']) ? $_POST['deliveryAddress'] : null;
-$deliveryDate = isset($_POST['deliveryDate']) ? $_POST['deliveryDate'] : null;
-$suggestedPricePerGallon = 1.50; // This value can be changed as needed
 
-// Create new FuelQuote object
-$fuelQuote = new FuelQuote($gallons_requested, $deliveryAddress, $deliveryDate, $suggestedPricePerGallon);
-
-// Calculate total amount due
-$totalAmountDue = $fuelQuote->calculateTotalAmountDue();
-
-?>
+// Close database connection
+$conn->close();
