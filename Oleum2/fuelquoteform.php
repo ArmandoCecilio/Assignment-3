@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <input type="date" id="delivery_date" name="delivery_date" required> 
 
   <br><br><label for="suggested_price">Suggested Price/Gallon:*</label>
-  <input type="number" id="suggested_price" name="suggested_price" step="0.01" required> 
+  <input type="number" id="suggested_price" name="suggested_price" step="0.01" readonly> 
 
   <br><br><label for="total_amount_due">Total Amount Due:*</label>
   <input type="number" id="total_amount_due" name="total_amount_due" step="0.01" value="<?php echo $total_amount_due; ?>" readonly>
