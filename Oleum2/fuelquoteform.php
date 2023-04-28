@@ -104,36 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     margin-bottom:50px;
   }
 </style>
-<script>
-  function calculateTotal() {
-  // Get the gallons requested and delivery date from the form
-  const gallonsRequested = parseFloat(document.getElementById("gallons_requested").value);
-  const deliveryDate = new Date(document.getElementById("delivery_date").value);
-
-  // Calculate the suggested price
-  let suggestedPrice = 0.0;
-  const state = "<?php echo $state; ?>"; // Get the state from PHP
-  if (state === "TX") {
-    suggestedPrice += 0.02;
-  } else {
-    suggestedPrice += 0.04;
-  }
-  if (gallonsRequested > 1000) {
-    suggestedPrice += 0.02;
-  } else {
-    suggestedPrice += 0.03;
-  }
-  suggestedPrice += 0.1;
-  suggestedPrice *= 1.5;
-
-  // Calculate the total amount due
-  const totalAmountDue = gallonsRequested * suggestedPrice;
-
-  // Update the suggested price and total amount due fields in the form
-  document.getElementById("suggested_price").value = suggestedPrice.toFixed(2);
-  document.getElementById("total_amount_due").value = totalAmountDue.toFixed(2);
-}
-</script>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   <?php
