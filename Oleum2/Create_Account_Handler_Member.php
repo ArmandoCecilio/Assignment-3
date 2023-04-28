@@ -1,10 +1,12 @@
 <?php
-    $dbServername = "localhost";
+    require_once("connection.php");
+    /*$dbServername = "localhost";
     $dbUsername = "root";
     $dbPassword = "Decon_0213";
     $dbName = "mydb";
+    */
     
-    $connMember = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+    $connMember = $conn;//mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
     if (!$connMember) {
         die("Connection failed: " . mysqli_connect_error());
     }

@@ -8,12 +8,13 @@
     </div>
 </nav>
 <?php
-$servername = "localhost";
+require_once("connection.php");
+/*$servername = "localhost";
 $username = "root";
 $password = "Decon_0213";
 $dbname = "mydb";
 $conn = new mysqli($servername, $username, $password, $dbname);
-
+*/
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }

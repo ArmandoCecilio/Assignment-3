@@ -1,8 +1,9 @@
 <?php 
 function getsugestedprice($conn, $userid, $userstate, $requestedgallons)
 {
-  $query="SELECT COUNT(*) FROM fuelquoteform WHERE member_ID=$userid";
-  $count=$conn->query($query);
+  $query="SELECT * FROM fuelquoteform WHERE member_ID='$userid'";
+
+  $count=mysqli_num_rows($conn->query($query));
   $CurrentPrice=1.50;
   $LocationFactor = $userstate=='TX'?0.02 :0.04;
   $RateHistoryFactor =  $count>0?0.01:0.00;
@@ -13,3 +14,4 @@ function getsugestedprice($conn, $userid, $userstate, $requestedgallons)
   $SuggestedPrice = $CurrentPrice + $Margin;
   return $SuggestedPrice;
 }
+

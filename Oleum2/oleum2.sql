@@ -33,7 +33,7 @@ CREATE TABLE `clientprofile` (
   PRIMARY KEY (`member_ID`),
   KEY `member_ID` (`member_ID`),
   CONSTRAINT `clientprofile_ibfk_1` FOREIGN KEY (`member_ID`) REFERENCES `member` (`member_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `fuelquoteform` (
   PRIMARY KEY (`quote_id`,`member_ID`),
   KEY `fuelquoteform_ibfk_1_idx` (`member_ID`),
   CONSTRAINT `fk_member_id` FOREIGN KEY (`member_ID`) REFERENCES `member` (`member_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

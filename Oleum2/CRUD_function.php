@@ -3,8 +3,8 @@
 function pdo_connect_mysql() {
     $dbServername = "localhost";
     $dbUsername = "root";
-    $dbPassword = "Decon_0213";
-    $dbName = "mydb";
+    $dbPassword = "";//"Decon_0213";
+    $dbName = "oleom";//"mydb";
     try {
     	return new PDO('mysql:host=' . $dbServername . ';dbname=' . $dbName . ';charset=utf8', $dbUsername, $dbPassword);
     } catch (PDOException $exception) {
