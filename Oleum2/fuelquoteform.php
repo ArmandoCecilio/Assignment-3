@@ -7,6 +7,7 @@
     </div>
 </nav>
 <?php
+require_once("pricingmodule.php");
 $servername = "localhost";
 $username = "root";
 $password = "Decon_0213";
@@ -36,7 +37,7 @@ if ($result->num_rows == 0) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gallons_requested = $_POST['gallons_requested'];
     $delivery_date = $_POST['delivery_date'];
-    $suggested_price = $_POST['suggested_price'];
+    $suggested_price = getsugestedprice($conn, $member_id, ;
     $total_amount_due = $gallons_requested * $suggested_price;
   
     $sql_insert = "INSERT INTO fuelquoteform (member_id, gallons_requested, delivery_date, suggested_price, total_amount_due) VALUES ('$member_id', '$gallons_requested', '$delivery_date', '$suggested_price', '$total_amount_due')";
