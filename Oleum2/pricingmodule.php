@@ -1,7 +1,7 @@
 <?php 
 function getsugestedprice($conn, $userid, $userstate, $requestedgallons)
 {
-  $query="SELECT COUNT(*) FROM fuelquoteform WHERE user_id=$userid";
+  $query="SELECT COUNT(*) FROM fuelquoteform WHERE member_ID=$userid";
   $count=$conn->query($query);
   const CurrentPrice=1.50;
   $LocationFactor = $userstate=='TX'?0.02 :0.04;
