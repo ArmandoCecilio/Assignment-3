@@ -7,7 +7,6 @@
     </div>
 </nav>
 <?php
-require_once("pricingmodule.php");
 $servername = "localhost";
 $username = "root";
 $password = "Decon_0213";
@@ -37,7 +36,49 @@ if ($result->num_rows == 0) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gallons_requested = $_POST['gallons_requested'];
     $delivery_date = $_POST['delivery_date'];
-    $suggested_price = getsugestedprice($conn, $member_id, $userstate, $gallons_requested);
+    $suggested_price = $_POST['suggested_price'];
+
+    $suggested_price = 0;
+
+    $check1 = "SELECT state FROM clientprofile WHERE member_ID = '$member_id'";
+    $result = mysqli_query($conn, $check1);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $state = $row['state'];
+        if ($state == "TX") {
+            $suggested_price += 0.02;
+        } else {
+            $suggested_price += 0.04;
+        }
+    }
+
+
+    $check2 = "SELECT member_ID FROM fuelquoteform WHERE member_ID = '$member_id'";
+    $result2 = mysqli_query($conn, $check2);
+
+    if (mysqli_num_rows($result2) > 0) {
+      $row2 = mysqli_fetch_assoc($result2);
+      $history = $row2['member_ID'];
+      if ($history) {
+        $suggested_price -= 0.01;
+      } else {
+        $suggested_price += 0.00; 
+      }
+    }
+
+    if ($gallons_requested > 1000) {
+      $suggested_price += 0.02;
+    } else {
+      $suggested_price += 0.03;
+    }
+
+    $suggested_price = $suggested_price + 0.10;
+
+    $suggested_price = 1.5 * $suggested_price;
+
+    $suggested_price = 1.5 + $suggested_price;
+
     $total_amount_due = $gallons_requested * $suggested_price;
   
     $sql_insert = "INSERT INTO fuelquoteform (member_id, gallons_requested, delivery_date, suggested_price, total_amount_due) VALUES ('$member_id', '$gallons_requested', '$delivery_date', '$suggested_price', '$total_amount_due')";
@@ -63,6 +104,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     margin-bottom:50px;
   }
 </style>
+<script>
+  function calculateTotal() {
+  // Get the gallons requested and delivery date from the form
+  const gallonsRequested = parseFloat(document.getElementById("gallons_requested").value);
+  const deliveryDate = new Date(document.getElementById("delivery_date").value);
+
+  // Calculate the suggested price
+  let suggestedPrice = 0.0;
+  const state = "<?php echo $state; ?>"; // Get the state from PHP
+  if (state === "TX") {
+    suggestedPrice += 0.02;
+  } else {
+    suggestedPrice += 0.04;
+  }
+  if (gallonsRequested > 1000) {
+    suggestedPrice += 0.02;
+  } else {
+    suggestedPrice += 0.03;
+  }
+  suggestedPrice += 0.1;
+  suggestedPrice *= 1.5;
+
+  // Calculate the total amount due
+  const totalAmountDue = gallonsRequested * suggestedPrice;
+
+  // Update the suggested price and total amount due fields in the form
+  document.getElementById("suggested_price").value = suggestedPrice.toFixed(2);
+  document.getElementById("total_amount_due").value = totalAmountDue.toFixed(2);
+}
+</script>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   <?php
@@ -87,38 +158,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <input type="date" id="delivery_date" name="delivery_date" required> 
 
   <br><br><label for="suggested_price">Suggested Price/Gallon:*</label>
-  <input type="number" id="suggested_price" name="suggested_price" step="0.01" readonly> 
+  <input type="number" id="suggested_price" name="suggested_price" step="0.01" value="<?php echo $suggested_price; ?>" readonly>
 
   <br><br><label for="total_amount_due">Total Amount Due:*</label>
   <input type="number" id="total_amount_due" name="total_amount_due" step="0.01" value="<?php echo $total_amount_due; ?>" readonly>
 
   <br><br><input type="submit" value="Submit">
 
+
 </form>
-
-<script>
-  // add event listeners to calculate total amount due
-  var gallonsInput = document.getElementById("gallons_requested");
-  var priceInput = document.getElementById("suggested_price");
-  var totalInput = document.getElementById("total_amount_due");
-
-  gallonsInput.addEventListener("input", function() {
-    calculateTotal();
-  });
-
-  priceInput.addEventListener("input", function() {
-    calculateTotal();
-  });
-
-  function calculateTotal() {
-    var gallons = gallonsInput.value;
-    var price = priceInput.value;
-
-    if (gallons && price) {
-      var total = (gallons * price).toFixed(2);
-      totalInput.value = total;
-    } else {
-      totalInput.value = "";
-    }
-  }
-</script>
